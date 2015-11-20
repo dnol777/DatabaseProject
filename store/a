@@ -1,0 +1,10 @@
+
+
+CREATE TABLE "table_contains" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "quantity" integer NOT NULL);
+CREATE TABLE "table_order" ("id" integer NOT NULL PRIMARY KEY, "date" date NOT NULL, "paid" bool NOT NULL);
+CREATE TABLE "table_orders" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "order_id_id" integer NOT NULL REFERENCES "table_order" ("id"));
+CREATE TABLE "table_product" ("id" integer NOT NULL PRIMARY KEY, "name" varchar(300) NOT NULL, "active" bool NOT NULL, "description" text NOT NULL, "stockQuantity" integer NOT NULL, "price" integer NOT NULL);
+CREATE TABLE "table_supplier" ("id" integer NOT NULL PRIMARY KEY, "name" varchar(300) NOT NULL);
+CREATE TABLE "table_supplys" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "product_id_id" integer NOT NULL REFERENCES "table_product" ("id"), "supplier_id_id" integer NOT NULL REFERENCES "table_supplier" ("id"));
+CREATE TABLE "table_user" ("address" varchar(300) NOT NULL, "name" varchar(300) NOT NULL, "id" integer NOT NULL PRIMARY KEY, "is_staff" bool NOT NULL, "email" varchar(500) NOT NULL, "password" varchar(500) NOT NULL);
+CREATE TABLE "table_orders__new" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "order_id_id" integer NOT NULL REFERENCES "table_order" ("id"), "user_id_id" integer NOT NULL REFERENCES "table_user" ("id"));
